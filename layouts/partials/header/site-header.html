@@ -1,0 +1,29 @@
+<nav class="navigation" role="navigation">
+    <h1 class="navigation__logo">
+        <a href="/">
+            <img alt="logo">
+        </a>
+    </h1>
+    <ul class="navigation__links">
+        {{ $currentSection := .Section }}
+        {{ range .Site.Sections }} 
+            {{ $activeClass :=  "" }}
+            {{ if eq .Section $currentSection }}
+                {{ $activeClass = "active" }}
+            {{ end }}
+            <li>
+                <a class="link navigation__link {{ $activeClass }}" href="{{ .Permalink }}">{{ .Title }}</a>
+            </li>
+        {{ end }}
+
+        <!-- <li>
+            <a class="link navigation__link" href="#">La Maison du Pont</a>
+        </li>
+        <li>
+            <a class="link navigation__link" href="#">Réalisations</a>
+        </li>
+        <li>
+            <a class="link navigation__link" href="#">Contact</a>
+        </li> -->
+    </ul>
+</nav>

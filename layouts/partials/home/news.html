@@ -1,0 +1,12 @@
+<section>
+    {{ $sectionNews := .Site.GetPage  "news" }}
+    <h3>{{ $sectionNews.Title }}</h3>
+    {{ $stories := (where $sectionNews.RegularPages.ByTitle "Section" "news" )}}
+    {{ range first 3 $stories }}
+        {{ .Title }}
+        {{ .Params.image }}
+    {{ end }}
+    <a href="{{ $sectionNews.Permalink }}">Voir tout</a>
+</section>
+
+

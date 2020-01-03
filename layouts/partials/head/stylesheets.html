@@ -1,0 +1,2 @@
+{{ $main := resources.Get "sass/main.scss" | resources.ToCSS }}
+<link rel="stylesheet" href="{{ $main.Permalink }}">
