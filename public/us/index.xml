@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Us on Association Le Pont</title>
+    <link>http://example.org/us/</link>
+    <description>Recent content in Us on Association Le Pont</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 03 Jan 2020 17:51:58 +0100</lastBuildDate>
+    
+	<atom:link href="http://example.org/us/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+  </channel>
+</rss>

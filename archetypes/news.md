@@ -1,6 +1,6 @@
 ---
 title: "{{ replace .Name "-" " " | title }}"
 date: {{ .Date }}
-image: "default.jpg"
+image: "/assets/images/logo_pont.jpg"
 draft: true
 ---
