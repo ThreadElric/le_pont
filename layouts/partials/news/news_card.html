@@ -1,0 +1,27 @@
+{{ $image := "" }}
+{{ if hasPrefix .Params.image "/assets/" }}
+    {{ $image = resources.Get (strings.TrimPrefix "/assets/" .Params.image) }}
+{{ else }}
+    {{ $image = .Resources.GetMatch .Params.image }}
+{{ end }}
+<article class="card" aria-label="{{ .Title }}">
+    {{ if $image }}
+    <img 
+        class="card__image"
+        src="{{ ($image.Resize "600x400").Permalink }}" 
+        alt="{{ .Title }}"/>
+    {{ end }}
+    <div class="card__content">
+        <h4 class="card__title"><a class="link" href="{{ .Permalink }}">{{ .Title }}</a></h4>
+        <p class="card__description">
+            {{ .Summary | plainify  }}
+            {{ if .Truncated }}
+                <!-- This <div> includes a read more link, but only if the summary is truncated... -->
+                <a class="link" href="{{ .Permalink }}">Tout lire</a>                        
+            {{ end }}
+        </p>
+        <time class="card__date" datetime="{{ .Date.Format "2006-01-02" | safeHTML }}">
+            {{ printf "%02d" .Date.Day }} {{ humanize (index $.Site.Data.mois (printf "%d" .Date.Month)) }} {{ .Date.Year }}
+        </time>
+    </div>
+</article>

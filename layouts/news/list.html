@@ -1,0 +1,14 @@
+{{ define "main" }}
+<main>
+    <section class="section" aria-labelledby="section_news" >
+        <h3 id="section__news" class="section__title">{{ .Title }}</h3>
+        <ul style="list-style: none;">
+        {{ range .Pages }}
+            <li>
+                {{ partial "news/news_card" . }}
+            </li>
+        {{ end }}
+        </ul>
+    </section>
+</main>
+{{ end }}

@@ -1,30 +1,34 @@
-<section>
+<section class="section" aria-labelledby="section_news" >
     {{ $sectionNews := .Site.GetPage  "news" }}
-    <h3>{{ $sectionNews.Title }}</h3>
+    <h3 id="section__news" class="section__title">{{ $sectionNews.Title }}</h3>
     {{ $stories := (where $sectionNews.RegularPages.ByDate.Reverse "Section" "news" )}}
     {{ range first 3 $stories }}
-        {{ $image := "" }}
-        {{ if hasPrefix .Params.image "/assets/" }}
-            {{ $image = resources.Get (strings.TrimPrefix "/assets/" .Params.image) }}
-        {{ else }}
-            {{ $image = .Resources.GetMatch .Params.image }}
-        {{ end }}
-        <article>
-            <h4><a href="{{.Permalink}}">{{ .Title }}</a></h4>
-            {{ if $image }}
-                <img 
-                    src="{{ ($image.Resize "600x400").Permalink }}" 
-                    alt="{{ .Title }}"/>
-            {{ end }}
-            <p>
-                {{ .Summary }}
-            </p>
-            <time datetime="{{ .Date.Format "2006-01-02" | safeHTML }}">
-                {{ printf "%02d" .Date.Day }} {{ humanize (index $.Site.Data.mois (printf "%d" .Date.Month)) }} {{ .Date.Year }}
-            </time>
-        </article>
+        {{ partial "news/news_card" . }}
     {{ end }}
-    <a href="{{ $sectionNews.Permalink }}">Voir tout</a>
+    <div class="section__actions">
+        <a class="section__link" href="{{ $sectionNews.Permalink }}">Voir tout</a>
+    </div>
+</section>
+
+<section class="section">
+    <article class="objective">
+        <h4 class="objective__title">&Eacute;changer</h4>
+        <p class="objective__description">
+            Prendre un repas, inventer des temps de convivialit&eacute; et faciliter la rencontre des cultures
+        </p>
+    </article>
+    <article class="objective">
+        <h4 class="objective__title">Orienter</h4>
+        <p class="objective__description">
+            Informer sur les diff&eacute;rents services sociaux pouvant r&eacute;pondre aux probl&egrave;mes rencontr&eacute;s
+        </p>
+    </article>
+    <article class="objective">
+        <h4 class="objective__title">R&eacute;ins&eacute;rer</h4>
+        <p class="objective__description">
+            Permettre de retrouver une autonomie sociale et professionnelle.
+        </p>
+    </article>
 </section>
 
 

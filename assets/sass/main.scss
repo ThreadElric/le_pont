@@ -1,5 +1,7 @@
+@import 'colors';
+
 html {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 16px;
     min-height: 100vh;
     box-sizing: border-box;
@@ -9,7 +11,224 @@ html {
 *:before,
 *:after {
     box-sizing: border-box;
+    line-height: 1.3;
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+    font-size: 16px;
 }
 
 body {
+
+}
+
+.link {
+    text-decoration: none; 
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.125em;
+    cursor: pointer;
+}
+
+.image {
+    object-fit: cover;
+    max-width: 100%;
+    height: auto;
+}
+
+.navigation {
+    display: flex;
+    flex-direction: column;
+
+    align-items: stretch;
+
+    padding: 1rem;
+
+    border: 1px solid $header_border_color;
+    box-shadow: 0px 0px 0px 1px $header_border_color,
+        0px 2px 10px $header_border_color;
+
+    &__logo {
+        line-height: 2;;
+    }
+
+    &__actions {
+        padding: 0.5rem 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        & .link {
+            font-size: 0.75rem;
+        }
+        li {
+            display: inline-block;
+
+        }
+    }
+
+    &__item {
+        padding: 0.5rem 1rem;
+
+        transition: background-color 200ms ease-in, color 200ms ease-in;
+        color: hsl(230.7, 54.7%, 44.1%);
+
+        &.active, &:hover {
+            background-color: #f5f5f5;
+            color: hsl(230.9, 56.1%, 32.2%);
+        }
+
+        & .link {
+            color: inherit;
+        }
+    }
+}
+
+.section {
+    $self: &;
+    padding: 1rem;
+    &__title {
+        font-weight: 600;
+        font-size: 1.125rem;
+    }
+    &__actions {
+        #{$self}__link {
+            @extend .link;
+            text-align: center;
+            border: 2px solid #eee;
+            margin: 1rem 0.5rem;
+            padding: 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            display: block;
+            &:hover {
+              background-color: #f0f0f0;  
+            }
+        }
+    }
+}
+
+.objective {
+    display: flex;
+    flex-direction: row;
+    padding: 1rem;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    justify-content: space-between;
+    align-items: center;
+    &__title {
+        flex-basis: 25ch;
+        flex-grow: 0;
+    }
+    &__description {
+        font-size: 0.9rem;
+        flex-grow: 1;
+        text-align: right;
+    }
+    .section & {
+        margin-top: 0.5rem;
+    }
+}
+
+.card {
+    display: flex;
+    flex-direction: row;
+    border-radius: 8px;
+    padding: 0.5rem;
+    overflow: hidden;
+    &__image {
+        @extend .image;
+        flex-basis: 150px;
+        flex-grow: 0;
+        flex-shrink: 0;
+        order: 0;
+        border-radius: 8px;
+    }
+    &__content{
+        flex-grow: 1;
+        padding: 0 0.5rem;
+
+        display: flex;
+        flex-direction: column;
+        & > * {
+            margin-bottom: 0.25rem;
+        }
+    }
+    &__title {
+        order: 0;
+    }
+    &__date {
+        order: 1;
+    }
+    &__description {
+        order: 2;
+        font-size: 0.8rem;
+        color: #333;
+        line-height: 1.5;
+        & .link {
+            text-transform: initial;
+            display: block;
+            font-size: inherit;
+            font-weight: normal;
+        }
+    }
+    .section & {
+        margin-top: 1rem;
+        min-height: 10rem;
+    }
+}
+
+
+.hero {
+    background-color: #ddd;
+    padding: 1rem;
+    min-height: 20rem;
+    & > * {
+        max-width: 40rem;
+    }
+    &__title {
+        font-size: 1.5rem;
+        margin: 1rem 0;
+    }
+    &__description {
+        font-size: 1.15rem;
+        margin: 1rem 0;
+    }
+    &__actions { 
+        text-align: right;
+    }
+    &__link {
+        @extend .link;
+
+    }
+}
+
+
+.footer {
+    $self: &;
+    background-color: $footer_background_color;
+    padding: 1rem;
+    color: $footer_text_color;
+    &__section {
+        display: inline-block;
+        & + & {
+            margin-top: 1rem;
+        }
+        #{$self}__header {
+            font-size: 0.9rem;
+        }
+        #{$self}__address {
+            white-space: pre-line;
+            font-style: initial;
+        }
+        #{$self}__links {
+            list-style: none;
+        }
+        #{$self}__link {
+            @extend .link;
+            font-size: 0.9rem;
+            color: white;
+            text-transform: initial;
+            font-weight: 300;
+        }
+    }
 }

@@ -1,18 +1,20 @@
-<nav class="navigation" role="navigation">
+<nav class="navigation" role="navigation" aria-label="Menu principal">
     <h1 class="navigation__logo">
         <a href="/">
             <img alt="logo">
         </a>
     </h1>
-    <ul class="navigation__links">
+    <ul class="navigation__actions">
         {{ $currentSection := .Section }}
-        {{ range .Site.Sections }} 
-            {{ $activeClass :=  "" }}
-            {{ if eq .Section $currentSection }}
-                {{ $activeClass = "active" }}
-            {{ end }}
-            <li>
-                <a class="link navigation__link {{ $activeClass }}" href="{{ .Permalink }}">{{ .Title }}</a>
+        {{ range (.Site.Sections.ByWeight ) }}            
+            <li class="navigation__item  {{ if eq .Section $currentSection }} active {{ end }}">
+                <a 
+                    class="link" 
+                    href="{{ .Permalink }}"
+                    {{ if eq .Section $currentSection }}
+                        aria-current="page"
+                    {{ end }}
+                >{{ .Title }}</a>
             </li>
         {{ end }}
 
@@ -21,9 +23,25 @@
         </li>
         <li>
             <a class="link navigation__link" href="#">Réalisations</a>
-        </li>
         <li>
             <a class="link navigation__link" href="#">Contact</a>
         </li> -->
     </ul>
 </nav>
+
+{{ if .IsHome }}
+<header class="hero">
+    <!-- <img src="images/le_pont_embleme.jpg"  /> -->
+    <h2 class="hero__title">Accompagner et aider la
+        r&eacute;insertion de personnes vivant en grande pr&eacute;carit&eacute;.</h2>
+    <p class="hero__description">
+        Depuis 1986, nous luttons pour qu'elles soient respect&eacute;es, qu'elles puissent vivre dans la dignit&eacute;,
+        qu'elles aient le droit &agrave; la parole et &agrave; leur place dans la vie associative, &eacute;conomique, sociale et
+        politique.
+    </p>
+    <div class="hero__actions">
+        {{ $contactSection := (.Site.GetPage "sections" "contact")}}
+        <a class="hero__link" href="{{ $contactSection.Permalink }}">Faire un don</a>
+    </div>
+</header>
+{{ end }}

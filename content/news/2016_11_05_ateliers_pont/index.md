@@ -1,7 +1,7 @@
 ---
 title: "Les Ateliers au Pont"
 date: 2016-11-05T23:55:17+01:00
-image: "images/atelier.jpg"
+image: "images/ateliers.jpg"
 draft: false
 ---
 
